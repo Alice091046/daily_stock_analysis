@@ -18,4 +18,4 @@ llm:
 # 推送配置（先留空，后面再填）
 push:
   type: pushplus
-  token: ""
+  token: "1a44e7cce4ab46f79203b1e8608c3196"
