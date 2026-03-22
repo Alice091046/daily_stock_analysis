@@ -243,6 +243,40 @@ jobs:
             python main.py $FORCE_RUN_ARG
           fi
       
+      # ========== 我新增的调试 + 推送检查步骤 ==========
+      - name: 【调试】检查推送配置与报告
+        run: |
+          echo "=========================================="
+          echo "🔍 推送与报告检查"
+          echo "=========================================="
+          echo "📌 PushPlus Token 状态: $([ -n "$PUSHPLUS_TOKEN" ] && echo '✅ 已配置' || echo '❌ 未配置')"
+          echo "📌 报告文件:"
+          ls -la reports/ 2>/dev/null || echo "⚠️  reports 目录为空"
+          echo "📌 日志文件:"
+          ls -la logs/ 2>/dev/null || echo "⚠️  logs 目录为空"
+          echo "=========================================="
+        env:
+          PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
+      
+      - name: 【强制】重新执行推送
+        if: always()
+        run: |
+          echo "=========================================="
+          echo "🚀 强制重新推送报告"
+          echo "=========================================="
+          # 直接调用主程序的推送逻辑（复用原有通知渠道）
+          python main.py --push-only
+          echo "✅ 推送执行完成"
+        env:
+          # 把所有通知渠道的环境变量再传一遍，确保推送能读到
+          PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
+          WECHAT_WEBHOOK_URL: ${{ secrets.WECHAT_WEBHOOK_URL }}
+          FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
+          EMAIL_SENDER: ${{ vars.EMAIL_SENDER || secrets.EMAIL_SENDER }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          EMAIL_RECEIVERS: ${{ vars.EMAIL_RECEIVERS || secrets.EMAIL_RECEIVERS }}
+      # ========== 新增结束 ==========
+      
       - name: 上传分析报告
         uses: actions/upload-artifact@v4
         if: always()
