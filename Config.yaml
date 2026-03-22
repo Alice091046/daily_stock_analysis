@@ -5,8 +5,8 @@ stocks:
   - 600256.SH
   - 603324.SH
   - 600900.SH
-  - 601088.SH
   - 601899.SH
+  - 601088.SH
 
 llm:
   provider: openai
