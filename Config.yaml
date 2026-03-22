@@ -15,7 +15,7 @@ llm:
   model: gpt-3.5-turbo
   base_url: https://api.aihubmix.com/v1
 
-# 推送配置（先留空，后面再填）
+# 推送配置（PushPlus）
 push:
   type: pushplus
   token: "1a44e7cce4ab46f79203b1e8608c3196"
