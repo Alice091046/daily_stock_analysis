@@ -1,21 +1,14 @@
-# 你的持仓股票列表
 stocks:
-  - 600903.SH  # 中油资本
-  - 002506.SZ  # 协鑫集成
-  - 301519.SZ  # 珈伟新能
-  - 600256.SH  # 广汇能源
-  - 603324.SH  # 天通股份
-  - 600900.SH  # 长江电力
-  - 601088.SH  # 中国神华
-  - 601899.SH  # 紫金矿业
+  - 600903.SH
+  - 002506.SZ
+  - 301519.SZ
+  - 600256.SH
+  - 603324.SH
+  - 600900.SH
+  - 601088.SH
+  - 601899.SH
 
-# AI 模型配置（适配 AIHubMix）
 llm:
   provider: openai
   model: gpt-3.5-turbo
   base_url: https://api.aihubmix.com/v1
-
-# 推送配置（PushPlus）
-push:
-  type: pushplus
-  token: "1a44e7cce4ab46f79203b1e8608c3196"
