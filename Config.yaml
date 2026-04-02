@@ -9,5 +9,5 @@ stocks:
 
 llm:
   provider: openai
-  model: gpt-3.5-urbo
+  model: gpt-3.5-turbo
   base_url: https://api.aihubmix.com/v1
